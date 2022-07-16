@@ -1,5 +1,7 @@
 package com.optimissa.capital.markets;
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.client.RestTemplate;
@@ -16,11 +18,12 @@ public class Application {
 		String jsonString = "https://api.frankfurter.app/latest?to=USD";
 		
 		Currency currency = template.getForObject(jsonString, Currency.class);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		System.out.println("Amount: " + currency.getAmount());
 		System.out.println("Base: " + currency.getBase());
-		System.out.println("Date: " + currency.getDate());
-		System.out.println("Rate: " + currency.getRates());
+		System.out.println("Date: " + sdf.format(currency.getDate()));
+		System.out.println("Rate: " + currency.getRates().get("USD"));
 		
 	}
 

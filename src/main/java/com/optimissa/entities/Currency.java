@@ -3,13 +3,10 @@ package com.optimissa.entities;
 import java.util.Date;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class Currency {
 
 	private String base;
 	private double amount;
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
 	private Date date;
 	private Map<String, Double> rates;
 	
@@ -17,11 +14,11 @@ public class Currency {
 		
 	}
 
-	public Currency(String name, double amount, Date date) {
-		super();
+	public Currency(String name, double amount, Date date, Map<String, Double> rates) {
 		this.base = name;
 		this.amount = amount;
 		this.date = date;
+		this.rates = rates;
 	}
 
 	public String getBase() {
@@ -50,15 +47,15 @@ public class Currency {
 
 	@Override
 	public String toString() {
-		return "Currency [name=" + base + ", amount=" + amount + ", date=" + date + " ]";
+		return "Currency [name = " + base + ", amount = " + amount + ", date = " + date + "rates = " + " ]";
 	}
 
 	public Map<String, Double> getRates() {
 		return rates;
 	}
-/*
-	public void setRates(List<Rate> rates) {
+
+	public void setRates(Map<String, Double> rates) {
 		this.rates = rates;
 	}
-	*/
+	
 }
