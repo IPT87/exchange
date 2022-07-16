@@ -1,24 +1,49 @@
 package com.optimissa.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
-public class Currency {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class Movement implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	private int id;
+	@ManyToOne
+	private String dni;
 	private String base;
 	private double amount;
 	private Date date;
 	private Map<String, Double> rates;
 	
-	public Currency() {
+	public Movement() {
 		
 	}
 
-	public Currency(String name, double amount, Date date, Map<String, Double> rates) {
-		this.base = name;
+	public Movement(int id, String base, double amount, Date date, Map<String, Double> rates) {
+		super();
+		this.id = id;
+		this.base = base;
 		this.amount = amount;
 		this.date = date;
 		this.rates = rates;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getBase() {
@@ -45,17 +70,18 @@ public class Currency {
 		this.date = date;
 	}
 
-	@Override
-	public String toString() {
-		return "Currency [name = " + base + ", amount = " + amount + ", date = " + date + "rates = " + " ]";
-	}
-
 	public Map<String, Double> getRates() {
 		return rates;
 	}
 
 	public void setRates(Map<String, Double> rates) {
 		this.rates = rates;
+	}
+
+	@Override
+	public String toString() {
+		return "Movement [id=" + id + ", base=" + base + ", amount=" + amount + ", date=" + date + ", rates=" + rates
+				+ "]";
 	}
 	
 }

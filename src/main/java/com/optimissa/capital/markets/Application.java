@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.client.RestTemplate;
 
-import com.optimissa.entities.Currency;
+import com.optimissa.entities.Movement;
 
 @SpringBootApplication
 public class Application {
@@ -17,7 +17,7 @@ public class Application {
 		RestTemplate template = new RestTemplate();
 		String jsonString = "https://api.frankfurter.app/latest?to=USD";
 		
-		Currency currency = template.getForObject(jsonString, Currency.class);
+		Movement currency = template.getForObject(jsonString, Movement.class);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		System.out.println("Amount: " + currency.getAmount());
